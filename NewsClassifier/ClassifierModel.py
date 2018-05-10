@@ -44,7 +44,7 @@ def txt2list(txtattr, txtfile):
     # 儲存型式
     # [ [性質, 標題, 內文], [性質, 標題, 內文]，... ]
     # [ [     第一則     ], [     第二則     ], ... ]
-    # i 即表示第幾則
+    # i 表示標題, i+1 表示內文
     for i in range(0, len(contentList), 2):
         txtList.append([txtattr, contentList[i], contentList[i+1]])
     
@@ -91,8 +91,10 @@ def gendata(newslist):
 cwd = os.getcwd()
 
 # 新聞文件檔
-PTStxtfile = cwd + '/NewsClassifier/2018-03-07_pts_news.txt'
-CHTtxtfile = cwd + '/NewsClassifier/2018-03-07_cht_news.txt'
+# PTStxtfile = cwd + '/NewsClassifier/2018-03-07_pts_news.txt'
+# CHTtxtfile = cwd + '/NewsClassifier/2018-03-07_cht_news.txt'
+PTStxtfile = cwd + '/NewsData/PTSNews'
+Othertxtfile = cwd + '/NewsData/OtherNews'
 
 if __name__ == '__main__':
     # use list to save txt contents
@@ -100,12 +102,16 @@ if __name__ == '__main__':
     PTStxtlist = txt2list('中性', PTStxtfile)
 
     # 中時
-    CHTtxtlist = txt2list('其它', CHTtxtfile)
+    # CHTtxtlist = txt2list('其它', CHTtxtfile)
+
+    # 其它: 中時，自由，蘋果
+    Othertxtlist = txt2list('其它', Othertxtfile)
 
     # 合併成一個新聞資料集
     newslist = list()
     newslist.extend(PTStxtlist)
-    newslist.extend(CHTtxtlist)
+    # newslist.extend(CHTtxtlist)
+    newslist.extend(Othertxtlist)
     
     # generate 分詞資料:X_newsdata, 標籤資料:y_labels
     X_newsdata, y_labels = gendata(newslist)
@@ -159,6 +165,8 @@ if __name__ == '__main__':
     # 分類器報告
     print("Classification report for classifier %s:\n%s\n"
       % (classifier, metrics.classification_report(actual, predicted)))
+    
+    print("Confusion matrix:\n%s" % metrics.confusion_matrix(actual, predicted))
 
-# for debug
+# for debug stop point
 pass

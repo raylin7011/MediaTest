@@ -51,7 +51,9 @@ def check_date_with_today(date,today):
     date = date.replace('年', ' ').replace('月', ' ').replace('日', '')
     date = date.split(' ')
     if int(date[1]) < 10:
-        date[1]='0'+ date[1]    
+        date[1]='0'+ date[1]
+    if int(date[2]) < 10:
+        date[2]='0'+ date[2]     
     date = date[0] + '-' + date[1] + '-' + date[2]
 
     if date != today:
