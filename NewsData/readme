@@ -1,0 +1,10 @@
+download DataSet.7z and extract to mediatest/NewsData
+
+dataSetTrain.csv and dataSetTest.csv for ClassifierModel2.py
+
+PTSNews and OtherNews for ClassifierModel.py
+
+2018-03-29_apple_news.txt, 2018-03-29_cht_news.txt, 2018-03-29_ltn_news.txt and
+2018-03-29_pts_news.txt for demoTodayMediaNews.py and demoPickNews.py
+
+https://drive.google.com/drive/folders/1ruehb_An879gucGr8QnfJbNXbtY2mSlh?usp=sharing
